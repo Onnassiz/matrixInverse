@@ -11,6 +11,10 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('dimension', 'Main@dimension');
+Route::get('dimension/{dim}', 'Main@setDimension');
+Route::post('dimension/{dim}', 'MatrixBuilder@validateMatrix');

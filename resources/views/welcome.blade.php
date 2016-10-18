@@ -1,91 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+@extends('layout.master')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+@section('content')
+    <div class="flex-center position-ref full-height">
+        <div class="top-right links">
+            <a href="{{ url('/') }}">Home</a>
+        </div>
+        <div class="content">
+            <div class="title m-b-md">
+                Benz Matrix Inverter
+            </div>
+            <div>
+            {!! Form::open(['url' => '/dimension', 'method' => 'GET']) !!}
+            <!-- Dimension Form Input -->
+                <div class="form-group {{ $errors->has('dimension')? 'has-error' : '' }}">
+                    {!! Form::text('dimension', null, ['class' => 'form-control', 'placeholder' => 'Enter the matrix dimension'])  !!}
+                    {!! $errors->first('dimension','<span class="help-block">:message</span>') !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::submit('Submit', ['class' => 'btn btn-default']) !!}
+                </div>
+                {!! Form::close() !!}
+            </div>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
+            @if(isset($dimension))
+                <h3>Enter matrix</h3>
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul style="text-align: left">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <div align="center">
+                    {!! Form::open(['url' => '/dimension/'.$dimension,'class' => 'form-inline']) !!}
+                        @for($i = 1; $i <= $dimension; $i++)
+                            @for($j = 1; $j <= $dimension; $j++)
+                                <!-- A Form Input -->
+                                <div class="form-group {{ $errors->has('A'.$i.$j)? 'has-error' : '' }} matrix-form">
+                                    {!! Form::text('A'.$i.$j, null, ['class' => 'form-control', 'placeholder' => 'A'.$i.'-'.$j])  !!}
+                                </div>
+                            @endfor
+                                <br>
+                        @endfor
+                        <br>
+                        <div style="width: 100px">
+                            {!! Form::submit('Get Inverse', ['class' => 'btn btn-default btn-block']) !!}
+                        </div>
+                    {!! Form::close() !!}
                 </div>
             @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
         </div>
-    </body>
-</html>
+    </div>
+@endsection
