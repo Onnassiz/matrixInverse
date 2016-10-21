@@ -21,7 +21,17 @@
 
 <body>
 @yield('content')
-
+<footer class="footer">
+    <div class="container">
+        <ul>
+            <li>This software calculates the inverse of an N*N matrix using the LU decomposition algorithm.</li>
+            <li>The software is restricted to a maximum matrix dimension of 8*8.</li>
+            <li>The execution time exceeds 30 seconds if the matrix dimension is more than 7.</li>
+            <li>When you submit a matrix request, the result page shows the inverse, lower triangular, and upper triangular matrix of your request.</li>
+            <li>Matrices with zero pivot problems are likely to crash during operation.</li>
+        </ul>
+    </div>
+</footer>
 <script src="{{ asset('js/jquery-min.js') }}"></script>
 <!-- Bootstrap -->
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>

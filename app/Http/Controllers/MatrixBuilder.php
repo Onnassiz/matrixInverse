@@ -9,6 +9,12 @@ use Redirect;
 
 class MatrixBuilder extends Controller
 {
+    public $matrixProcessor;
+
+    public function __construct() {
+        $this->matrixProcessor = new MatrixProcessor();
+    }
+
     public function validateMatrix($dim, Request $request) {
         for($i = 1; $i <= $dim; $i++){
             for($j = 1; $j <= $dim; $j++){
@@ -21,7 +27,7 @@ class MatrixBuilder extends Controller
         ];
         $this->validate($request, $validationArray, $message);
 
-        $this->buildMatrix($request,$dim);
+        return $this->buildMatrix($request,$dim);
     }
 
     public function buildMatrix($req, $dim) {
@@ -31,7 +37,6 @@ class MatrixBuilder extends Controller
                 $matrix[$i][$j] = $req['A'.$i.$j];
             }
         }
-        ?>
-        <pre><?php print_r($matrix) ?></pre><?php
+        return $this->matrixProcessor->matrix($matrix);
     }
 }

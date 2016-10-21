@@ -10,7 +10,7 @@ class Main extends Controller
 {
     public function dimension(Request $request) {
         $this->validate($request, [
-            'dimension' =>  'required|integer|min:1|max:10'
+            'dimension' =>  'required|integer|min:1|max:8'
         ]);
 
         $dimension = $request['dimension'];
@@ -19,7 +19,7 @@ class Main extends Controller
     }
 
     public function setDimension($dim) {
-        if($dim < 1 or $dim > 10){
+        if($dim < 1 or $dim > 8){
             return \Redirect::to('/');
         }
         return view('welcome')->with('dimension', $dim)->with('first', true);

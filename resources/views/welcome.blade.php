@@ -1,4 +1,3 @@
-
 @extends('layout.master')
 
 @section('content')
@@ -22,7 +21,6 @@
                 </div>
                 {!! Form::close() !!}
             </div>
-
 
             @if(isset($dimension))
                 <h3>Enter matrix</h3>

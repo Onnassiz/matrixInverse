@@ -1,10 +1,12 @@
+
 html, body {
     background-color: #fff;
     color: #636b6f;
     font-family: 'Raleway', sans-serif;
     /*font-weight: 600;*/
-    min-height: 100vh;
-    margin: 0;
+    min-height: 200vh;
+    margin-bottom: 60px;
+    position: relative;
 }
 
 .full-height {
@@ -12,9 +14,10 @@ html, body {
 }
 
 .flex-center {
-    align-items: center;
     display: flex;
+    /*align-items: center;*/
     justify-content: center;
+    margin: auto;
 }
 
 .position-ref {
@@ -28,6 +31,7 @@ html, body {
 }
 
 .content {
+    margin-top: 80px;
     text-align: center;
 }
 
@@ -52,4 +56,14 @@ html, body {
 .matrix-form > input{
     text-align: center;
     font-weight: 600;
+}
+
+footer{
+    position: fixed;
+    bottom:0;
+    z-index:10;
+    width: 100%;
+    background-color: #dff0d8;
+    /*height: 60px;*/
+    padding: 20px;
 }
