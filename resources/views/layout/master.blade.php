@@ -15,7 +15,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <!-- Main Style -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/stylesheet.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/stylesheet.css', env('REDIRECT_HTTPS')) }}">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 </head>
 
