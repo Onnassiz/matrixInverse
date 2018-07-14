@@ -35,6 +35,7 @@
                 @endif
                 <div align="center">
                     {!! Form::open(['url' => '/dimension/'.$dimension,'class' => 'form-inline']) !!}
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         @for($i = 1; $i <= $dimension; $i++)
                             @for($j = 1; $j <= $dimension; $j++)
                                 <!-- A Form Input -->
